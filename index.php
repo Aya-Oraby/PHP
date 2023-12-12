@@ -3,73 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lap 1</title>
+    <title>lap 4</title>
 </head>
 <body>
     <?php
-    echo "Welcome to php";
-   echo"<br>";
-    print "welcome to php";
-    $x=5;
-    $y="Welcome ";
-    $z=True;
-    echo $x."<br>".$y."<br>".$z."<br>";
-    echo gettype($x)."<br>";
-    echo gettype($y)."<br>";
-    echo gettype($z)."<br>";
-    for($i=0;$i<=15;$i++)
-    {
-        echo "$i","<br>"; 
-    }
-    $i=0;
-    while($i<16)
-    {
-        echo "$i"."<br>";
-        $i++;
-    }
-    define ('X','ITI');
-    echo "X"."<br>";
-    const Y="ITI";
-    echo "Y"."<br>";
-    $m=5;
-    $n=10;
-    $result=$n+$m;
-    if($result>50)
-    {
-        echo "Accept"."<br>";
-    }
-    else
-    {
-        echo "NOt Accept"."<br>";
-    }
-    function anyToString($name)
-    {
-        $z;
-        $z=(string)$name;
-        echo "<br>";
-        return gettype($z);
-    }
-    echo anyToString(5);
+    /*****************addshashes****************** */
+    $char="Aya ' oraby";
+    echo addslashes($char)."<br>";
+    /*****************replace************** */
+    $vowels = array("a", "e", "i", "o", "u", "A", "E", "I", "O", "U");
+    $onlyconsonants = str_replace($vowels, "/", "Hello World I am Aya ");   
+    echo $onlyconsonants."<br>";  
+    $constant="you should study and work";
+    $good=array("study","work");
+    $bad=array("play","eat");
+    $newconstant=str_replace($good,$bad,$constant);
+    echo $newconstant."<br>"; 
+    /***************count string************ */
+    $text = 'This is a test';
+    echo strlen($text)."<br>";
+    /**********************wrap string****** */
+    $text = "Today is the nice day because we in the winter .";
+    $newtext = wordwrap($text, 15, "<br>");
+    echo $newtext."<br>";
+    /*********upper case first character******* */
+    $foo = 'hello world!';
+    $foo = ucfirst($foo)."<br>";
 
-    $A="1000$";
-    $B="1200$";
-    $C="1400$";
+
+    /**********array_unique****** */
+    $input = array( "green", "red",  "green", "blue", "red");
+    $result = array_unique($input);
+    foreach($result as $in)
+    {
+        echo $in."<br>";
+    }
+    /************sum an array ************** */
+    $arr=[1,2,3,4,5];
+    $sum=array_sum($arr);
+    echo $sum ."<br>"; 
+    /*****************rang array*************/
+    $numbers = range(1, 15);
+    foreach($numbers as $number)
+    {
+        echo $number ."<br>";
+    }
+    /*****************resort array in defferent way every time*************/
+    $numbers = range(1, 15);
+    shuffle($numbers);
+    foreach ($numbers as $number) {
+        echo "$number "."<br>";
+    }
+    /**********************list array**************/
+    $info = array('coffee', 'brown', 'caffeine');
+    list($drink, $color, $power) = $info;
+    echo "$drink is $color and $power makes it special.\n";
     ?>
-  <table border=1>
-        <tr>
-            <td><?php echo"Salary of MR.A"?></td>
-            <td><?php echo $A?></td>
-        </tr>
-        <tr>
-        <td><?php echo"Salary of MR.B"?></td>
-            <td><?php echo $B?></td>
-        </tr>
-        <tr>
-        <td><?php echo"Salary of MR.C"?></td>
-            <td><?php echo $C?></td>
-        </tr>
-    </table>
-    <?php
+    <?php 
+    function is_required($input){
+        if(empty($input)){
+            echo "error";
+        }else{
+            echo $input;
+        }
+    }
+    echo "<br>";
+    is_required(htmlspecialchars(strip_tags(trim($_POST['fname']))));
+
     ?>
+    <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
+        <label for=""> First Name</label>
+        <input type="text" name="fname">
+        <label for=""> Last Name</label>
+        <input type="text" name="lname">
+        <input type="submit" value="ok">
+    </form>
+
 </body>
 </html>
